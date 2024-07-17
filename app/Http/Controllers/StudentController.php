@@ -31,9 +31,31 @@ class StudentController extends Controller
         $user->role = 'user';
         $user->save();
 
+        $clinicId = generateRandomNumericString();
+        
+        $record = new Record;
+        $record->genotype = "";
+        $record->bloodgroup = "";
+        $record->deformity = "";
+        $record->deformityType = "";
+        $record->recurringIllness = "";
+        $record->phoneNumber = "";
+        $record->clinicId = $clinicId;
+        $record->user_id = $user->id;
+        $record->save();
        // Session::flash('error', 'User not found');
         return redirect('/student/login');
     
+    }
+
+    function generateRandomNumericString() {
+        $numbers = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgjijklmnopqrstuvwxyz';
+        $randomString = '';
+        for ($i = 0; $i < 5; $i++) {
+            $index = rand(0, strlen($numbers) - 1);
+            $randomString .= $numbers[$index];
+        }
+        return $randomString;
     }
 
     public function login(Request $request)
@@ -48,7 +70,15 @@ class StudentController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             // Authentication successful
-            return redirect()->intended('/doctor/dashboard');
+            $user = User::where("email", $request['email'])->first();
+
+            if ($user->role != "user") {
+                Session::flash('error', 'Not a Student, Login through the admin portal');
+                return back();
+            }else{
+                return redirect()->intended('/student/dashboard');
+            }
+            
         }
 
         Session::flash('error', 'User not found');
@@ -60,7 +90,7 @@ class StudentController extends Controller
     {
         Auth::logout();
 
-        return redirect('/doctor/login');
+        return redirect('/student/login');
 
 
     }

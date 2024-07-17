@@ -31,7 +31,7 @@
     <nav class="uk-navbar-container uk-visible@m" uk-navbar style="position: relative; z-index: 980; padding-top:10px;">
         <div class="uk-navbar-right" style="padding-right: 15px">
             <ul class="uk-navbar-nav">
-                        <form action="/admin/logout" method="post">
+                        <form action="/doctor/logout" method="post">
                             @csrf
                             <input class="uk-button uk-button-primary" type="submit" value="Logout">
                         </form>

@@ -26,24 +26,27 @@ Route::prefix('doctor')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::post('logout', [DoctorController::class , 'logout']);
         Route::get('dashboard', [DoctorController::class , 'dashboard']);
+        Route::get('appointment', [DoctorController::class , 'getAppointments']);
+        Route::post('appointment/add', [DoctorController::class , 'scheduleAppointment']);
+        Route::post('appointment/approve/{id}', [DoctorController::class , 'approveAppointment']);
+        Route::get('all', [DoctorController::class , 'getDoctors']);
+        Route::post('add', [DoctorController::class , 'addDoctors']);
+        Route::get('students', [DoctorController::class , 'getStudents']);
+        Route::post('student/record/{id}', [DoctorController::class , 'addStudentRecord']);
+        
     });
 
+   
    
     Route::get('report', function () {
         return view('doctor.report');
     });
-    Route::get('appointment', function () {
-        return view('doctor.appointments');
-    });
+   
     Route::get('medication', function () {
         return view('doctor.medications');
     });
-    Route::get('students', function () {
-        return view('doctor.students');
-    });
-    Route::get('all', function () {
-        return view('doctor.doctors');
-    });
+    
+   
     Route::get('report', function () {
         return view('doctor.report');
     });

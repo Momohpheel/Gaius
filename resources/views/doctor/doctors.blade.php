@@ -18,8 +18,90 @@
 
     <div class="uk-child-width-expand" uk-grid>
         <div><h2 style="font-weight: bold">DOCTORS</h2></div>
+        <br>
         <div style="text-align: right">
-            <a href="{{url('/doctor/add')}}"><button class="uk-button uk-button-primary"><span uk-icon="plus"></span> Add Doctor</button></a>
+            <a href="#modal-add" uk-toggle><button class="uk-button uk-button-primary"><span uk-icon="plus"></span> Add Doctor</button></a>
+            <div id="modal-add" uk-modal>
+                <div class="uk-modal-dialog uk-modal-body">
+                    <form action="{{url('/doctor/add')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <h2 class="uk-modal-title">Add New Doctor</h2>
+                        <div >
+
+
+                            <div class="uk-width-1-1@s">
+
+                                <div class="uk-margin">
+                                    <label class="uk-form-label">Name</label>
+                                        <div class="uk-form-controls">
+                                            <input type="text" name="fullName" class="uk-input" value="" id="">
+                                        </div>
+
+                                </div>
+
+                                <div class="uk-margin">
+                                    <label class="uk-form-label">Email</label>
+                                        <div class="uk-form-controls">
+                                            <input type="text" name="email" class="uk-input" value="" id="">
+                                        </div>
+
+                                </div>
+
+                                <div class="uk-margin">
+                                    <label class="uk-form-label">Password</label>
+                                        <div class="uk-form-controls">
+                                            <input type="text" name="password" class="uk-input" value="" id="">
+                                        </div>
+
+                                </div>
+
+
+                               <div class="uk-margin">
+                                    <label class="uk-form-label">Sex</label>
+                                        <div class="uk-form-controls">
+                                            <input type="text" name="sex" class="uk-input" value="" id="">
+                                        </div>
+
+                                </div>
+                                <div class="uk-margin">
+                                    <label class="uk-form-label">Qualification</label>
+                                        <div class="uk-form-controls">
+                                            <input type="text" name="qualification" class="uk-input" value="" id="">
+                                        </div>
+
+                                </div>
+                                <div class="uk-margin">
+                                    <label class="uk-form-label">Level</label>
+                                        <div class="uk-form-controls">
+                                            <input type="text" name="level" class="uk-input" value="" id="">
+                                        </div>
+
+                                </div>
+
+                                <div class="uk-margin">
+                                    <label class="uk-form-label">Start Date</label>
+                                        <div class="uk-form-controls">
+                                            <input type="text" name="start_date" class="uk-input" value="" id="">
+                                        </div>
+
+                                </div>
+
+
+                                
+                            </div>
+                        </div>
+                            <br>
+                            <span id="enter">
+                            </span>
+                        
+
+                        <p class="uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <button class="uk-button uk-button-primary" type="submit">Save</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -66,27 +148,23 @@
                         <th>LEVEL</th>
                         <th>START DATE</th>
                         <th>STATUS</th>
-                        <th style="min-width: 70px">EDIT</th>
+                        {{-- <th style="min-width: 70px">EDIT</th> --}}
                     </tr>
                     </thead>
                     <tbody>
-                   
+                   @foreach($doctor as $doc)
                     <tr>
-                        <td>
-                           
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                          
-                        </td>
-                        <td>
-                           
-                        </td>
+                        <td> {{ $doc->name}} </td>
+                        <td>{{ $doc->sex}}</td>
+                        <td>{{ $doc->qualification}}</td>
+                        <td>{{ $doc->level}}</td>
+                        <td>{{ $doc->start_date}}</td>
+                        <td>{{ $doc->status}}</td>
+                        {{-- <td>
+                            <a href="#modal-edit{{$doc->id}}" uk-toggle><span uk-icon="pencil"></span></a>
+                        </td> --}}
                     </tr>
-                 
+                 @endforeach
                     </tbody>
                 </table>
               

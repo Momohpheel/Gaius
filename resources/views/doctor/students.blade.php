@@ -63,21 +63,96 @@
                     </tr>
                     </thead>
                     <tbody>
-                   
+                   @foreach($students as $student)
                     <tr>
+                        <td>{{ $student['clinic_id'] }}</td>
+                        <td>{{ $student->name }}</td>
+                        <td>{{ $student->email }}</td>
+                        <td>{{ $student['phone'] }}</td>
+                        <td>{{ $student->matric_number }}</td>
                         <td>
-                           
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                          
+                            <a href="#modal-edit{{$student->id}}" uk-toggle><span uk-icon="pencil"></span></a>
+                            <div id="modal-edit{{$student->id}}" uk-modal>
+                                <div class="uk-modal-dialog uk-modal-body">
+                                    <form action="{{url('/doctor/student/record/'.$student->id)}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <h2 class="uk-modal-title">Medical Record</h2>
+                                        <div >
+
+                                            <label class="uk-form-label">CLINIC ID</label>
+                                                        <div class="uk-form-controls">
+                                                            {{ $student['record']->clinicId }}
+                                                        </div>
+
+                                            <div class="uk-width-1-1@s">
+                                                <div class="uk-margin">
+                                                    <label class="uk-form-label">Genotype</label>
+                                                        <div class="uk-form-controls">
+                                                            <input type="text" name="genotype" class="uk-input" value="{{$student['record']->genotype}}" id="">
+                                                        </div>
+                
+                                                </div>
+                
+                                                <div class="uk-margin">
+                                                    <label class="uk-form-label">Blood Group</label>
+                                                        <div class="uk-form-controls">
+                                                            <input type="text" name="bloodgroup" class="uk-input" value="{{$student['record']->bloodgroup}}" id="">
+                                                        </div>
+                
+                                                </div>
+                
+                                                <div class="uk-margin">
+                                                    <label class="uk-form-label">Deformity</label>
+                                                        <div class="uk-form-controls">
+                                                            <input type="text" name="deformity" class="uk-input" value="{{$student['record']->deformity}}" id="">
+                                                        </div>
+                
+                                                </div>
+                
+                
+                                               <div class="uk-margin">
+                                                    <label class="uk-form-label">Type of Deformity</label>
+                                                        <div class="uk-form-controls">
+                                                            <input type="text" name="deformityType" class="uk-input" value="{{$student['record']->deformityType}}" id="">
+                                                        </div>
+                
+                                                </div>
+                                                <div class="uk-margin">
+                                                    <label class="uk-form-label">Recurring Illness</label>
+                                                        <div class="uk-form-controls">
+                                                            <input type="text" name="recurringIllness" class="uk-input" value="{{$student['record']->recurringIllness}}" id="">
+                                                        </div>
+                
+                                                </div>
+                                                <div class="uk-margin">
+                                                    <label class="uk-form-label">Phone Number</label>
+                                                        <div class="uk-form-controls">
+                                                            <input type="text" name="phoneNumber" class="uk-input" value="{{$student['record']->phoneNumber}}" id="">
+                                                        </div>
+                
+                                                </div>
+                
+                                                
+
+                                                
+                                            </div>
+                                        </div>
+                                            <br>
+                                            <span id="enter">
+                                            </span>
+                                        
+
+                                        <p class="uk-text-right">
+                                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                            <button class="uk-button uk-button-primary" type="submit">Save</button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
                         </td>
                         
                     </tr>
-                 
+                 @endforeach
                     </tbody>
                 </table>
               

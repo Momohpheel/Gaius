@@ -18,8 +18,61 @@
 
     <div class="uk-child-width-expand" uk-grid>
         <div><h2 style="font-weight: bold">Appointments</h2></div>
+
+        <br>
         <div style="text-align: right">
-            <a href="{{url('/student/schedule-appointments')}}"><button class="uk-button uk-button-primary"><span uk-icon="plus"></span> Schedule Appointment</button></a>
+            <a href="#modal-add" uk-toggle><button class="uk-button uk-button-primary"><span uk-icon="plus"></span> Schedule Appointment</button></a>
+            <div id="modal-add" uk-modal>
+                <div class="uk-modal-dialog uk-modal-body">
+                    <form action="{{url('/doctor/appointment/add')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <h2 class="uk-modal-title">Schedule Appointment</h2>
+                        <div >
+
+
+                            <div class="uk-width-1-1@s">
+
+                                <div class="uk-margin">
+                                    <label class="uk-form-label">Student</label>
+                                        <div class="uk-form-controls">
+                                            <select name="student_id" id="">
+                                                <option value="">Select Students</option>
+                                                @foreach($students as $stud)
+                                                <option value="{{$stud->id}}"> {{ $stud->name}} </option>
+                                                @endforeach
+                                            </select>
+                                          {{-- <input type="text" name="student_name" class="uk-input" value="" id=""> --}}
+                                        </div>
+
+                                </div>
+
+                                <div class="uk-margin">
+                                    <label class="uk-form-label">Reason</label>
+                                        <div class="uk-form-controls">
+                                            <textarea type="text" name="reason" class="uk-input" value="" id=""></textarea>
+                                        </div>
+
+                                </div>
+
+                               
+
+
+                              
+                                
+                            </div>
+                        </div>
+                            <br>
+                            <span id="enter">
+                            </span>
+                        
+
+                        <p class="uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <button class="uk-button uk-button-primary" type="submit">Save</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -75,7 +128,8 @@
                         <th>NAME OF DOCTOR</th>
                         <th>NAME OF PATIENT</th>
                         <th>REASON</th>
-                        <th>DATE</th>
+                        <th>APPOINTMENT DATE</th>
+                        <th>DATE CREATED</th>
                         <th>STATUS</th>
                         <th style="min-width: 70px">CHECK</th>
                     </tr>
@@ -86,11 +140,81 @@
                         <tr>
                             <td>{{ $appointment->clinic_id ?? "" }}</td>
                             <td>{{ $appointment->doctor_name ?? ""}}</td>
+                            <td>{{ $appointment->student_name ?? ""}}</td>
                             <td>{{ $appointment->reason ?? ""}}</td>
                             <td>{{ $appointment->appointment_time ?? "" }}</td>
+                            <td>{{ $appointment->created_at ?? "" }}</td>
                             <td>{{ strtoupper($appointment->status  ?? "") }}</td>
                             <td>
-                              
+                                <a href="#modal-edit{{$appointment->id}}" uk-toggle><span uk-icon="pencil"></span></a>
+                                <div id="modal-edit{{$appointment->id}}" uk-modal>
+                                    <div class="uk-modal-dialog uk-modal-body">
+                                        <form action="{{url('/doctor/appointment/approve/'.$appointment->id)}}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <h2 class="uk-modal-title">Appointment Details</h2>
+                                            <div >
+
+
+                                                <div class="uk-width-1-1@s">
+                                                    <div class="uk-margin">
+                                                        <label class="uk-form-label">Name</label>
+                                                            <div class="uk-form-controls">
+                                                               {{ $appointment->student_name ?? "" }}
+                                                            </div>
+
+                                                    </div>
+                                                    <div class="uk-margin">
+                                                        <label class="uk-form-label">Reason</label>
+                                                            <div class="uk-form-controls">
+                                                                {{  $appointment->reason ?? ""  }}
+                                                            </div>
+
+                                                    </div>
+
+                                                    <div class="uk-margin">
+                                                        <label class="uk-form-label">Choose Doctor</label>
+                                                            <div class="uk-form-controls">
+                                                                <select name="doctor_id" id="" class="uk-form-controls" required>
+                                                                    <option value="">Select Doctor</option>
+                                                                    @foreach($doctors as $doc)
+                                                                    <option value="{{$doc->id}}">{{$doc->name}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                    </div>
+                                                    <div class="uk-margin">
+                                                        <label class="uk-form-label">Doctor's note</label>
+                                                            <div class="uk-form-controls">
+                                                                <textarea type="text" name="doctors_note" class="uk-textarea" rows="5"  value="" id=""></textarea>
+                                                            </div>
+
+                                                    </div>
+
+                                                    <div class="uk-margin">
+                                                        <label class="uk-form-label">Date/Time for appointment</label>
+                                                            <div class="uk-form-controls">
+                                                                <input type="datetime-local" name="appointment_date">
+                                                            </div>
+
+                                                    </div>
+
+
+                                                    
+                                                </div>
+                                            </div>
+                                                <br>
+                                                <span id="enter">
+                                                </span>
+                                            
+
+                                            <p class="uk-text-right">
+                                                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                                <button class="uk-button uk-button-primary" type="submit">Save</button>
+                                            </p>
+                                        </form>
+                                    </div>
+                                </div>
                             </td>
                             
                         </tr>

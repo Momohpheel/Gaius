@@ -60,18 +60,7 @@
                     </div>
                 </a>
             </div> --}}
-            <div>
-                <a href="" style="text-decoration: none">
-                    <div class="uk-card uk-card-default uk-card-body" style="padding: 0px 0px;">
-                        <div style="text-align: right">
-                            <div style="padding: 20px 30px">
-                                <div style="color: #7E7E7E; font-size: 12px;">TOTAL SALES</div>
-                                <div style="font-size: 30px;line-height: 33px;color: #000;font-weight: 500">&#8358;</div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+           
             {{-- <div>
                 <a href="{{url('/order_report?from='.$from_date.'&to='.$to_date)}}" style="text-decoration: none">
                     <div class="uk-card uk-card-default uk-card-body" style="padding: 0px 0px;">
@@ -96,74 +85,7 @@
                     </div>
                 </a>
             </div> --}}
-            <div>
-                <a href="" style="text-decoration: none">
-                    <div class="uk-card uk-card-default uk-card-body" style="padding: 0px 0px;">
-                        <div style="text-align: right">
-                            <div style="padding: 20px 30px">
-                                <div style="color: #7E7E7E; font-size: 12px;">PURCHASES</div>
-                                <div style="font-size: 30px;line-height: 33px;color: #000;font-weight: 500">
-                                    &#8358;</div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div>
-            <a href="" style="text-decoration: none">
-                <div class="uk-card uk-card-default uk-card-body" style="padding: 0px 0px;">
-                    <div style="text-align: right">
-                        <div style="padding: 20px 30px">
-                            <div style="color: #7E7E7E; font-size: 12px;">PAYMENTS</div>
-                            <div style="font-size: 30px;line-height: 33px;color: #000;font-weight: 500">&#8358;</div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            </div>
-            <div>
-                <a href="{{url('/creditnote')}}" style="text-decoration: none">
-                <div class="uk-card uk-card-default uk-card-body" style="padding: 0px 0px;">
-                    <div style="text-align: right">
-                        <div style="padding: 20px 30px">
-                            <div style="color: #7E7E7E; font-size: 12px;">CREDIT NOTE</div>
-                            <div style="font-size: 30px;line-height: 33px;color: #000;font-weight: 500">
-                                &#8358;</div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-            </div>
-
-            <div>
-                <a href="" style="text-decoration: none">
-                <div class="uk-card uk-card-default uk-card-body" style="padding: 0px 0px;">
-                    <div style="text-align: right">
-                        <div style="padding: 20px 30px">
-                            <div style="color: #7E7E7E; font-size: 12px;">RECONCILIATION</div>
-                            <div style="font-size: 30px;line-height: 33px;color: #000;font-weight: 500">
-                                <span><br></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-            </div>
-
-            <div>
-                <a href="" style="text-decoration: none">
-                <div class="uk-card uk-card-default uk-card-body" style="padding: 0px 0px;">
-                    <div style="text-align: right">
-                        <div style="padding: 20px 30px">
-                            <div style="color: #7E7E7E; font-size: 12px;">RESTOCK</div>
-                            <div style="font-size: 30px;line-height: 33px;color: #000;font-weight: 500"> </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-            </div>
-
-
+          
             {{-- <div>
                 <a href="{{url('/reconciliation/passtobill?sort=passtobill')}}" style="text-decoration: none">
                 <div class="uk-card uk-card-default uk-card-body" style="padding: 0px 0px;">
@@ -230,7 +152,7 @@
         const data = {
             labels: labels,
             datasets: [{
-                label: 'Sales Report',
+                label: 'Student Report',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
                 data: [
