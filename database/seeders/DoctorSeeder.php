@@ -21,5 +21,7 @@ class DoctorSeeder extends Seeder
         $user->password = Hash::make("password");
         $user->role = 'doctor';
         $user->save();
+
+        //dfddfdffjj
     }
 }
